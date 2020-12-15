@@ -1,0 +1,17 @@
+{
+  "Mail Part Fetcher": {
+    "description": "Monitor IMAP mailboxes and fetch mail parts.",
+    "parameters": {
+      "content_types": true,
+      "folder": "INBOX",
+      "mail_host": "<host>",
+      "mail_password": "<password>",
+      "mail_ssl": true,
+      "mail_user": "<user>",
+      "name": "__FEED__",
+      "provider": "__PROVIDER__",
+      "rate_limit": 60,
+      "subject_regex": "<subject>"
+    }
+  }
+}

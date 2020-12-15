@@ -1,5 +1,6 @@
 *.pyc
 .idea
+.vscode
 config/config.ini
 fake-install
 intelmq

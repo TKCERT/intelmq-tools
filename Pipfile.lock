@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "007b9b3355f0e7077752b689f3b9b872d69fcc86ccd3d3df64769436290bab3c"
+            "sha256": "574944db7dd34ca37047251217e915335a5a846dc4e1e6fad6b4d8e3c7808adf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,6 +44,13 @@
                 "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"
             ],
             "version": "==2.10"
+        },
+        "imbox": {
+            "hashes": [
+                "sha256:b0bdfc76b10caa9b0f903c532894c58af4d4cee182ec35700d0048047b7ec9bb"
+            ],
+            "index": "pypi",
+            "version": "==0.9.8"
         },
         "intelmq": {
             "hashes": [
