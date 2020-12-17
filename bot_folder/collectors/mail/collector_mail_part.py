@@ -20,26 +20,31 @@ class MailPartCollectorBot(MailCollectorBot):
     def process_message(self, uid, message):
         seen = False
 
-        report = self.new_report()
-        report["extra.email_subject"] = message.subject
-        report["extra.email_from"] = ','.join(x['email'] for x in message.sent_from)
-        report["extra.email_message_id"] = message.message_id
-
         email_message = message_from_string(message.raw_email)
         if email_message.is_multipart():
             for part in email_message.walk():
                 if part.get_content_type() in self.content_types:
+                    report = self.new_report(message, part.get_content_type())
                     report["raw"] = str(part).split('\n\n', 1)[1]
-                    report["extra.email_content_type"] = part.get_content_type()
                     self.send_message(report)
                     seen = True
+
         elif email_message.get_content_type() in self.content_types:
+            report = self.new_report(message, email_message.get_content_type())
             report["raw"] = str(email_message)
-            report["extra.email_content_type"] = email_message.get_content_type()
             self.send_message(report)
             seen = True
 
         return seen
+
+    def new_report(self, message, content_type):
+        report = super().new_report()
+        report["extra.email_subject"] = message.subject
+        report["extra.email_from"] = ','.join(x['email'] for x in message.sent_from)
+        report["extra.email_message_id"] = message.message_id
+        report["extra.email_content_type"] = content_type
+
+        return report
 
 
 BOT = MailPartCollectorBot
