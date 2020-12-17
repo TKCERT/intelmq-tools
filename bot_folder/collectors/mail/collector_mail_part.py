@@ -29,12 +29,12 @@ class MailPartCollectorBot(MailCollectorBot):
         if email_message.is_multipart():
             for part in email_message.walk():
                 if part.get_content_type() in self.content_types:
-                    report["raw"] = bytes(part).split(b'\n\n', 1)[1]
+                    report["raw"] = str(part).split('\n\n', 1)[1]
                     report["extra.email_content_type"] = part.get_content_type()
                     self.send_message(report)
                     seen = True
         elif email_message.get_content_type() in self.content_types:
-            report["raw"] = bytes(email_message)
+            report["raw"] = str(email_message)
             report["extra.email_content_type"] = email_message.get_content_type()
             self.send_message(report)
             seen = True
